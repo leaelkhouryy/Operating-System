@@ -50,6 +50,8 @@ int main (){
             perror("Error");
         }
         else {
+            close(fd1[0]);
+            close(fd1[1]);
             close(fd2[1]);
             dup2(fd2[0], 0);
             close(fd2[1]);
@@ -57,6 +59,5 @@ int main (){
             perror("Error");
         }
     }
-
     return 0;
 }
