@@ -2,7 +2,7 @@
 // sends a character string entered from the keyboard to the server via the socket created. The 
 // server reads the message received from the client and displays it on the screen. The server 
 // then sends back to the client the message "I got your message", which will be displayed by 
-// the client. You are asked to write this prgram using a local socket in connected mode with up to 5 simultaneous connections. The 
+// the client. You are asked to write this program using a local socket in connected mode with up to 5 simultaneous connections. The 
 // socket name is taken as a parameter when the programs are run. 
 
 #include<stdio.h>
@@ -26,15 +26,16 @@ int main(int argc, char** argv){
     exit(1);
     }
 
+    //Create socket
+    if((sockfd = socket(AF_LOCAL, SOCK_STREAM, 0)) < 0){
+        error("Creating Socket");
+    }
+
     bzero(&server_addr, sizeof(server_addr)); //bzero() erases the data in the sizeof(server_addr) bytes of the memory starting at the location pointed to by server_addr, by writing zeros (bytes containing '\0') to that area
     server_addr.sun_family = AF_LOCAL;
     strcpy(server_addr.sun_path, argv[1]);
     server_addr_len = sizeof(server_addr.sun_family) + strlen(server_addr.sun_path); //server_addr_len = sizeof(server_addr);
     
-    //Create socket
-    if((sockfd = socket(AF_LOCAL, SOCK_STREAM, 0)) < 0){
-        error("Creating Socket");
-    }
     
     //Connect to socket
     if(connect(sockfd, (struct sockaddr *)&server_addr, server_addr_len) < 0){

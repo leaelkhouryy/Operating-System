@@ -18,15 +18,15 @@ int main(int argc, char** argv){
         exit(1);
     }
 
-    bzero(&server_addr, sizeof(server_addr));
-    server_addr.sun_family = AF_LOCAL;
-    strcpy(server_addr.sun_path, argv[1]);
-    server_addr_len = sizeof(server_addr.sun_family) + strlen(server_addr.sun_path);
-
     //Create socket
     if((socket_listener_fd = socket(AF_LOCAL, SOCK_STREAM, 0)) < 0){
         error("Creating Socket");
     }
+    
+    bzero(&server_addr, sizeof(server_addr));
+    server_addr.sun_family = AF_LOCAL;
+    strcpy(server_addr.sun_path, argv[1]);
+    server_addr_len = sizeof(server_addr.sun_family) + strlen(server_addr.sun_path);
 
     //Bind
     if((bind(socket_listener_fd, (struct sockaddr *)&server_addr, server_addr_len)) < 0){
