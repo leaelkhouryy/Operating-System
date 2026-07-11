@@ -30,24 +30,7 @@ void handler(int sig){
 int main(){
 
     signal(SIGINT, handler);
-    signal(SIGINT, handler);
-    signal(SIGINT, handler);
-
-
     signal(SIGUSR1, handler);
-
-    signal(SIGINT, handler);
-    signal(SIGINT, handler);
-    signal(SIGINT, handler);
-    signal(SIGINT, handler);
-    signal(SIGINT, handler);
-    signal(SIGINT, handler);
-
-    signal(SIGUSR1, handler);
-    signal(SIGUSR1, handler);
-
-    signal(SIGINT, handler);
-    signal(SIGINT, handler);
 
     while(life>0){
         sleep(1);
