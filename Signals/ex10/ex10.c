@@ -16,6 +16,7 @@ struct sigaction action;
 void sigint_handler(int sig){
     if(sig == SIGINT){
         printf("SIGINT received");
+        sleep(1);
     }
 }
 
