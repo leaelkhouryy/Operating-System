@@ -11,15 +11,15 @@ int nsig[NSIG];
 
 void handler(int sig){
     nsig[sig]++;
-    printf("Received %d signal %d times..", s, nsig[sig]);
+    printf("Received %d signal %d times..", sig, nsig[sig]);
 }
 
-inr main(){
+int main(){
     int sig;
 
     for (sig = 1; sig < NSIG; sig++){
         if (signal(sig, handler) == SIG_ERR){
-            printf(stdout, "Cannot catch signals #%d\n", sig);
+            printf("Cannot catch signals #%d\n", sig);
         }
         nsig[sig] = 0;
     }

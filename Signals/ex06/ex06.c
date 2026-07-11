@@ -8,23 +8,23 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-void handler(iny sig){
+int fd;
+
+void handler(int sig){
     printf("Handler..\n");
     close(fd);
     exit(1);
 }
 
 int main(){
-    int fd;
     int i =0;
 
-    signal(SIGINT, handle);
+    signal(SIGINT, handler);
 
     fd = open("Signal_ex06.txt", O_RDWR | O_APPEND, 0);
 
-    for (i < 5){
+    for (i = 0; i < 5; i++){
         write(fd, "abcdefghijkl", 12);
-        i++;
         sleep(1);
     } 
     

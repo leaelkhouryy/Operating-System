@@ -9,8 +9,8 @@
 #include <signal.h>
 #include <unistd.h>
 
-void handler(in sig){
-    printf(stderr, "Handler %d'n", getpid());
+void handler(int sig){
+    fprintf(stderr, "Handler %d\n", getpid());
 }
 
 int main(){
@@ -20,7 +20,7 @@ int main(){
         perror("signal"); exit(1);
     }
 
-    if (pid = fork()){
+    if ((pid = fork()) < 0){
         perror("Fork error..");
         exit(1);
     }
@@ -36,7 +36,8 @@ int main(){
     } else {
         for (i = 2; i <= 100; i +=2){
             pause();
-            printf("%d", i);
+            printf("%d\n
+                ", i);
             kill(pid, SIGUSR1);
         }
     }
