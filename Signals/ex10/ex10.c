@@ -28,7 +28,7 @@ int main(){
 
     action.sa_flags = 0;
 
-    signaction(SIGINT, &action, 0);
+    sigaction(SIGINT, &action, 0);
 
     printf("Waiting for SIGINT...");
 
